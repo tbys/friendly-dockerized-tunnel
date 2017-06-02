@@ -10,13 +10,13 @@ echo "$PRIVATE_KEY" | ssh-add -
 
 cmd="/usr/bin/autossh -M 0 -T -N -v -p $PORT $USER@$HOSTNAME"
 
-#export LOCAL_FORWARDS=*:1111:localhost:2222,localhost:3333:localhost:4444
+# eg. LOCAL_FORWARDS: "*:1111:localhost:2222,localhost:3333:localhost:4444"
 for l in $(echo $LOCAL_FORWARDS | sed "s/,/ /g")
 do
   local_forwards="$local_forwards -L $l"
 done
 
-#export REMOTE_FORWARDS=*:1111:localhost:2222,localhost:3333:localhost:4444
+# eg. REMOTE_FORWARDS: "*:1111:localhost:2222,localhost:3333:localhost:4444"
 for r in $(echo $REMOTE_FORWARDS | sed "s/,/ /g")
 do
   remote_forwards="$remote_forwards -R $r"
